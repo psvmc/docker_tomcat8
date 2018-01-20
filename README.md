@@ -1,5 +1,5 @@
 # docker_tomcat8
 
-+ ubuntu
++ centos
 + oracle jdk8
 + tomcat8

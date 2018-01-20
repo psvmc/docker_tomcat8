@@ -1,19 +1,15 @@
 # Pull base image  
-FROM ubuntu:13.10  
+FROM centos  
   
 MAINTAINER psvmc "psvmc@outlook.com"  
 
 # Set Charset 
 ENV LANG en_US.UTF-8    
 ENV LANGUAGE en_US:en    
-ENV LC_ALL en_US.UTF-8
-  
-# update source  
-RUN echo "deb http://archive.ubuntu.com/ubuntu precise main universe"> /etc/apt/sources.list  
-RUN apt-get update  
+ENV LC_ALL en_US.UTF-8 
   
 # Install curl  
-RUN apt-get -y install curl  
+RUN yum -y install curl  
   
 # Install JDK 8  
 RUN cd /tmp &&  curl -L 'http://download.oracle.com/otn-pub/java/jdk/8u162-b12/0da788060d494f5095bf8624735fa2f1/jdk-8u162-linux-x64.tar.gz' -H 'Cookie: oraclelicense=accept-securebackup-cookie; gpw_e24=Dockerfile' | tar -xz  
@@ -33,13 +29,13 @@ RUN mv /tmp/apache-tomcat-8.5.24/ /opt/tomcat8/
 ENV CATALINA_HOME /opt/tomcat8  
 ENV PATH $PATH:$CATALINA_HOME/bin  
   
-ADD tomcat8.sh /etc/init.d/tomcat8  
-RUN chmod 755 /etc/init.d/tomcat8  
+ADD catalina.sh /opt/tomcat8/bin/catalina.sh
+RUN chmod 755 /opt/tomcat8/bin/catalina.sh  
   
 # Expose ports.  
 EXPOSE 8080  
   
 # Define default command.  
-ENTRYPOINT service tomcat8 start && tail -f /opt/tomcat8/logs/catalina.out 
+ENTRYPOINT /opt/tomcat8/bin/startup.sh && tail -F /opt/tomcat8/logs/catalina.out
 
  
