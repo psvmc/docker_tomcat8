@@ -36,6 +36,7 @@ RUN chmod 755 /opt/tomcat8/bin/catalina.sh
 EXPOSE 8080  
   
 # Define default command.  
-ENTRYPOINT /opt/tomcat8/bin/startup.sh && tail -F /opt/tomcat8/logs/catalina.out
+WORKDIR /opt/tomcat8/bin/
+ENTRYPOINT startup.sh && tail -F /opt/tomcat8/logs/catalina.out
 
  
