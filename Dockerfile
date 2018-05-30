@@ -24,8 +24,8 @@ RUN update-alternatives --install /usr/bin/javac javac /usr/lib/jvm/java-8-oracl
 ENV JAVA_HOME /usr/lib/jvm/java-8-oracle/  
   
 # Install tomcat8  
-RUN cd /tmp && curl -L 'https://mirrors.tuna.tsinghua.edu.cn/apache/tomcat/tomcat-8/v8.5.24/bin/apache-tomcat-8.5.24.tar.gz' | tar -xz  
-RUN mv /tmp/apache-tomcat-8.5.24/ /opt/tomcat8/  
+RUN cd /tmp && curl -L 'http://mirror.bit.edu.cn/apache/tomcat/tomcat-8/v8.5.31/bin/apache-tomcat-8.5.31.tar.gz' | tar -xz  
+RUN mv /tmp/apache-tomcat-8.5.31/ /opt/tomcat8/  
   
 ENV CATALINA_HOME /opt/tomcat8  
 ENV PATH $PATH:$CATALINA_HOME/bin  
