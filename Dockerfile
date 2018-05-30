@@ -39,4 +39,5 @@ EXPOSE 8080
 WORKDIR /opt/tomcat8/bin/
 ENTRYPOINT startup.sh && tail -F /opt/tomcat8/logs/catalina.out
 
- 
+ENV TZ=Asia/Shanghai
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
